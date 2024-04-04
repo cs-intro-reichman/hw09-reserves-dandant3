@@ -103,13 +103,13 @@ public class LanguageModel {
                 generatedText.append(nextChar);
             } else {
                 // If no further prediction can be made based on the current window,
-                // append a random character from the entire character set
-                char randomChar = getRandomChar(CharDataMap.values().iterator().next());
-                generatedText.append(randomChar);
+                // append a space character to continue the generation
+                generatedText.append(' ');
             }
         }
         
-        return generatedText.toString();
+        // Trim any trailing spaces from the generated text
+        return generatedText.toString().trim();
     }
     
     /** Returns a string representing the map of this language model. */
