@@ -123,7 +123,7 @@ public class List {
             pointer = pointer.next;
             index++;
         }
-        return -1;
+        return -1; // Indicating not found
     }
 
     /** If the given character exists in one of the CharData objects in this list,
