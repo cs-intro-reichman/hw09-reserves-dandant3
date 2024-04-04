@@ -95,24 +95,21 @@ public class LanguageModel {
         
         StringBuilder generatedText = new StringBuilder(initialText);
         
-        
-        for (int i = initialText.length(); i < textLength; i++) {
-            // Changed loop condition to reflect the dynamic length of the generatedText
+        while (generatedText.length() < textLength) {
             String currentWindow = generatedText.substring(Math.max(0, generatedText.length() - windowLength));
-            // Extract the last 'windowLength' characters or fewer if the text is shorter
             
             if (CharDataMap.containsKey(currentWindow)) {
                 char add = getRandomChar(CharDataMap.get(currentWindow));
                 generatedText.append(add);
-                // No need to manually manage 'workString' and 'end', just append to 'generatedText'
             } else {
-                // If no further prediction can be made, break out of the loop
-                break;
+                // Handle the case when the current window is not found in the map
+                // For example, append a random character or use a different strategy
+                char randomChar = getRandomChar(CharDataMap.values().iterator().next());
+                generatedText.append(randomChar);
             }
         }
         
         return generatedText.toString();
-        // Return the complete generated text
     }
     
     /** Returns a string representing the map of this language model. */
