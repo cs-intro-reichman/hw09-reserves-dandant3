@@ -93,19 +93,11 @@ public class List {
 
     /** GIVE Adds a CharData object with the given character to the beginning of this list. */
     public void addFirst(char chr) {
-        Node current = this.first;
-        while (current != null) {
-            if (current.cp.chr == chr) {
-                current.cp.count++; 
-                return;
-            }
-            current = current.next;
-        }
         CharData newCharData = new CharData(chr);
         Node newFirst = new Node(newCharData);
         newFirst.next = this.first; 
         this.first = newFirst; 
-        this.size++; 
+        this.size++; // Ensure this line is correctly executing
     }
     
     /** GIVE Textual representation of this list. */
@@ -131,7 +123,7 @@ public class List {
             pointer = pointer.next;
             index++;
         }
-        return -1; // Indicating not found
+        return -1;
     }
 
     /** If the given character exists in one of the CharData objects in this list,
