@@ -99,11 +99,11 @@ public class LanguageModel {
             String currentWindow = generatedText.substring(Math.max(0, generatedText.length() - windowLength));
             
             if (CharDataMap.containsKey(currentWindow)) {
-                char add = getRandomChar(CharDataMap.get(currentWindow));
-                generatedText.append(add);
+                char nextChar = getRandomChar(CharDataMap.get(currentWindow));
+                generatedText.append(nextChar);
             } else {
-                // Handle the case when the current window is not found in the map
-                // For example, append a random character or use a different strategy
+                // If no further prediction can be made based on the current window,
+                // append a random character from the entire character set
                 char randomChar = getRandomChar(CharDataMap.values().iterator().next());
                 generatedText.append(randomChar);
             }
