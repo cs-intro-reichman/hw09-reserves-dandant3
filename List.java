@@ -99,17 +99,31 @@ public class List {
         this.first = newFirst; 
         this.size++; // Ensure this line is correctly executing
     }
-    
-    /** GIVE Textual representation of this list. */
+
     public String toString() {
-        String allText = "";
-        Node pointer = this.first;
-        while (pointer != null){
-            allText += pointer.toString();
-            pointer = pointer.next;
+        if (size==0)
+        {
+            return "()";
+
         }
-        return allText; 
+        else 
+        {
+            String str="(";
+            Node currentNode = first;
+            Node nextNode = first.next;
+            while(nextNode!=null)
+            {
+                str+= currentNode.toString()+" ";
+                currentNode=currentNode.next;
+                nextNode=nextNode.next;
+            }
+            str+= currentNode.toString()+")";
+            return str;
+        }
     }
+
+
+    
     /** Returns the index of the first CharData object in this list
      *  that has the same chr value as the given char,
      *  or -1 if there is no such object in this list. */

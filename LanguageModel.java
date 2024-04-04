@@ -62,8 +62,11 @@ public class LanguageModel {
         for (CharData data : probs.toArray()) {
             totalCharacters += data.count;
         }
+        double cumulativeProbability = 0; // Initialize cumulative probability
         for (CharData data : probs.toArray()) {
             data.p = (double) data.count / totalCharacters;
+            cumulativeProbability += data.p; // Update cumulative probability
+            data.cp = cumulativeProbability; // Set cumulative probability for current CharData
         }
     }
     public char getRandomChar(List probs) {
